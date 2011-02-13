@@ -41,6 +41,9 @@ class Estacao(Micro):
         self.pai = Estacao.__bases__
         return self.pai
 
+     def retornaDescEstacao(self):
+        return self.descricao
+
 class Servidor(Micro):
 
     def __init__(self, codigo, desc, capacidade, mem, tamBuffer, qtdMaxBuffer):
@@ -61,7 +64,10 @@ class Usuario():
     def retornaNome(self):
         return self.nome
 
-    def usarEstacao(self):
-        self.estacao = Estacao(1,"Estacao 1",20,400,"Macae")
+    def usarEstacao(self, Estacao):
+        self.estacao = Estacao
+
+    def retornaEstacao(self):
+        return self.estacao.retornaDescEstacao()
 
 

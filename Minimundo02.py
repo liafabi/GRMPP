@@ -22,7 +22,7 @@ class Impressora:
         return self.servidor
 
 
-class Micro:
+class Micro(object):
 
     def __init__(self, codigo, desc, capacidade, mem):
         self.codigo_patrimonio = codigo
@@ -37,5 +37,31 @@ class Estacao(Micro):
         Micro.__init__(self, codigo, desc, capacidade, mem)
         self.localizacao = local
 
+     def retornaPai(self):
+        self.pai = Estacao.__bases__
+        return self.pai
+
+class Servidor(Micro):
+
+    def __init__(self, codigo, desc, capacidade, mem, tamBuffer, qtdMaxBuffer):
+        Micro.__init__(self, codigo, desc, capacidade, mem)
+        self.tamBuffer = tamBuffer
+        self.qtdMaxBuffer = qtdMaxBuffer
+
+    def retornaPai(self):
+        self.pai = Servidor.__bases__
+        return self.pai
+
+class Usuario():
+
+    def __init__(self, nome, senha):
+        self.nome = nome
+        self.senha = senha
+
+    def retornaNome(self):
+        return self.nome
+
+    def usarEstacao(self):
+        self.estacao = Estacao(1,"Estacao 1",20,400,"Macae")
 
 

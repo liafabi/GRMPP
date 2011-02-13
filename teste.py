@@ -12,6 +12,7 @@
 import unittest
 from Minimundo02 import Impressora
 from Minimundo02 import Estacao
+from Minimundo02 import Usuario
 class test(unittest.TestCase):
 
 ##    def setUp(self):
@@ -21,12 +22,20 @@ class test(unittest.TestCase):
 ##        '''Testa se a impressora esta ligada a algum servidor'''
 ##        self.assertTrue(self.imp.retorna_servidor())
 
-    def setUp(self):
-        self.estacao = Estacao( 1, "Estacao 1", 10, 400, "Macae")
+##    def setUp(self):
+##        self.estacao = Estacao( 1, "Estacao 1", 10, 400, "Macae")
+##
+##    def testa_estacao(self):
+##        '''Testa se estacao e um micro'''
+##        self.assertEqual(self.estacao.retornaPai(),"Micro")
 
-    def testa_estacao(self):
-        '''Testa se estacao e um micro'''
-        self.assertEqual(Estacao.__bases__,"Micro")
+    def setUp(self):
+        self.usu = Usuario("Fabiola",123)
+
+    def testaNome(self):
+        '''Testa se o usuario possui nome'''
+        self.assertEqual(self.usu.retornaNome(),"Fabiola")
+
 
 if __name__ == "__main__":
     unittest.main()

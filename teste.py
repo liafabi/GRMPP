@@ -32,16 +32,19 @@ class test(unittest.TestCase):
     def setUp(self):
         self.usu = Usuario("Fabiola",123)
         self.est = Estacao(1,"Estacao 1",200,4,"macae")
-        self.usu.usarEstacao(est)
+        self.usu.usarEstacao(self.est)
 
     def testaNome(self):
         '''Testa se o usuario possui nome'''
         self.assertEqual(self.usu.retornaNome(),'Fabiola')
 
-    def retornaEstacaoUsuario(self):
+    def testaDescEstacacaoUsua(self):
         '''Verifica se o usuario esta conectado a uma estacao'''
-        self.assertEqual(self.usu.retornaEstacao(),"Estacao 1")
+        self.assertEqual(self.usu.estacao.descricao,"Estacao 1", )
 
+    def testaConeccaoAtiva(self):
+        '''verifica se usuario ja possui coneccao ATIVA'''
+        self.assertEqual(self.usu.ConecAtiva, "SIM", "Usuario nao possui coneccao ATIVA")
 
 if __name__ == "__main__":
     unittest.main()

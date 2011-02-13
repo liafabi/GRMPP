@@ -60,14 +60,25 @@ class Usuario():
     def __init__(self, nome, senha):
         self.nome = nome
         self.senha = senha
+        self.ConecAtiva = 'NAO'
 
     def retornaNome(self):
         return self.nome
 
     def usarEstacao(self, Estacao):
-        self.estacao = Estacao
+        #verificar se usu?rio j? possui coneccao ativa
+        if self.ConecAtiva == 'SIM':
+            print "Usuario %s ja possui coneccao ATIVA na estacao %s" %(self.nome, self.estacao.descricao)
+        elif self.ConecAtiva == 'NAO':
+            self.estacao = Estacao
+            self.ConecAtiva = 'SIM'
 
-    def retornaEstacao(self):
-        return self.estacao.retornaDescEstacao()
+    def sairEstacao(self, Estacao):
+        self.ConecAtiva = 'NAO'        #self.estacao = null "como desmontar a classe?"
+
+
+    def mostaEstacaoUsuario(self):
+        print " Codigo: %f \n Descricao: %s \n Capacidade: %f \n Memoria: %f \n Local: %s" %(self.estacao.codigo_patrimonio,self.estacao.descricao,self.estacao.capacidade, self.estacao.memoria, self.estacao.localizacao)
+        #self.estacao.retornaDescEstacao()
 
 

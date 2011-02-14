@@ -12,7 +12,7 @@
 
 class Impressora:
 
-    def __init__(self,codigo,desc, vel,serv):
+    def __init__(self,codigo,desc, vel,serv):  #Contrutor da classe Impressora
         self.codigo = codigo
         self.descricao = desc
         self.velocidade = vel
@@ -24,7 +24,7 @@ class Impressora:
 
 class Micro(object):
 
-    def __init__(self, codigo, desc, capacidade, mem):
+    def __init__(self, codigo, desc, capacidade, mem):  #Contrutor da classe Micro
         self.codigo_patrimonio = codigo
         self.descricao = desc
         self.capacidade = capacidade
@@ -33,9 +33,12 @@ class Micro(object):
 
 class Estacao(Micro):
 
-     def __init__(self, codigo, desc, capacidade, mem, local):
+     def __init__(self, codigo, desc, capacidade, mem, local):    #Contrutor da classe Estacao
         Micro.__init__(self, codigo, desc, capacidade, mem)
         self.localizacao = local
+
+     def __del__(self):      #Destrutor da classe Estacao
+        print "Destrutor chamado."
 
      def retornaPai(self):
         self.pai = Estacao.__bases__
@@ -46,7 +49,7 @@ class Estacao(Micro):
 
 class Servidor(Micro):
 
-    def __init__(self, codigo, desc, capacidade, mem, tamBuffer, qtdMaxBuffer):
+    def __init__(self, codigo, desc, capacidade, mem, tamBuffer, qtdMaxBuffer):  #Contrutor da classe Servidor
         Micro.__init__(self, codigo, desc, capacidade, mem)
         self.tamBuffer = tamBuffer
         self.qtdMaxBuffer = qtdMaxBuffer
@@ -57,7 +60,7 @@ class Servidor(Micro):
 
 class Usuario():
 
-    def __init__(self, nome, senha):
+    def __init__(self, nome, senha):  #Contrutor da classe Usuario
         self.nome = nome
         self.senha = senha
         self.ConecAtiva = 'NAO'
@@ -74,10 +77,10 @@ class Usuario():
             self.ConecAtiva = 'SIM'
 
     def sairEstacao(self, Estacao):
-        self.ConecAtiva = 'NAO'        #self.estacao = null "como desmontar a classe?"
+        self.ConecAtiva = 'NAO'
+        self.estacao = Estacao.__del__ #chamada do destrutor da classe Estacao
 
-
-    def mostaEstacaoUsuario(self):
+    def mostraEstacaoUsuario(self):
         print " Codigo: %f \n Descricao: %s \n Capacidade: %f \n Memoria: %f \n Local: %s" %(self.estacao.codigo_patrimonio,self.estacao.descricao,self.estacao.capacidade, self.estacao.memoria, self.estacao.localizacao)
         #self.estacao.retornaDescEstacao()
 

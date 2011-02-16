@@ -101,10 +101,9 @@ class Usuario():
             print "Usuario %s nao possui coneccao ATIVA, portanto n?o pode imprimir" %(self.nome)
         elif self.permImpressao == 'NAO':
             print "Usuario %s nao tem permissao para imprimir arquivo" %(self.nome)
-        elif self.ConecAtiva == 'SIM' and self.CondicaoImprimir == 'SIM':
+        elif self.ConecAtiva == 'SIM' and self.permImpressao == 'SIM':
             self.impressora = Impressora
             print "O arquivo %s ser? impresso na impressora %s" %(self.arquivo.nomeArquivo, self.impressora.descricao)
-
 
 
 

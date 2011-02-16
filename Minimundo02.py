@@ -1,4 +1,4 @@
-#-------------------------------------------------------------------------------
+﻿#-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:
 #
@@ -60,10 +60,14 @@ class Servidor(Micro):
 
 class Usuario():
 
-    def __init__(self, nome, senha):  #Contrutor da classe Usuario
+    def __init__(self, nome, senha, permImpressao):  #Contrutor da classe Usuario
         self.nome = nome
         self.senha = senha
         self.ConecAtiva = 'NAO'
+        if permImpressao == 'SIM' or permImpressao == 'NAO':
+            self.permImpressao = permImpressao
+        else:
+            print "Permissao para impressao somente pode ser 'SIM' ou 'NAO'."
 
     def retornaNome(self):
         return self.nome
@@ -84,4 +88,17 @@ class Usuario():
         print " Codigo: %f \n Descricao: %s \n Capacidade: %f \n Memoria: %f \n Local: %s" %(self.estacao.codigo_patrimonio,self.estacao.descricao,self.estacao.capacidade, self.estacao.memoria, self.estacao.localizacao)
         #self.estacao.retornaDescEstacao()
 
+    def escolherImpressora(self, Impressora):
+        self.impressora = Impressora
+
+    def retornaImpressora(self):
+        return self.impressora.descricao
+
+    def solicitarImpressao(self):
+        if self.ConecAtiva == 'SIM' and permImpressao == 'SIM':
+            pass
+        elif self.ConecAtiva == 'NAO':
+            print "Esse usuario nao pode imprimir pois não possui conexao ativa."
+        elif self.permImpressao == 'NAO':
+            print "Esse usuario nao possui permissao para impressao."
 

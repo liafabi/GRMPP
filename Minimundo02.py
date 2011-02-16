@@ -105,5 +105,5 @@ class Usuario():
             self.impressora = Impressora
             print "O arquivo %s ser? impresso na impressora %s" %(self.arquivo.nomeArquivo, self.impressora.descricao)
 
-
-
+    def teste(self):
+        pass

@@ -1,4 +1,4 @@
-﻿#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:
 #
@@ -21,6 +21,9 @@ class Impressora:
     def retorna_servidor(self):
         return self.servidor
 
+class Arquivo:
+    def __init__(self, nomeArq):
+        self.nomeArquivo = nomeArq
 
 class Micro(object):
 
@@ -85,20 +88,23 @@ class Usuario():
         self.estacao = Estacao.__del__ #chamada do destrutor da classe Estacao
 
     def mostraEstacaoUsuario(self):
-        print " Codigo: %f \n Descricao: %s \n Capacidade: %f \n Memoria: %f \n Local: %s" %(self.estacao.codigo_patrimonio,self.estacao.descricao,self.estacao.capacidade, self.estacao.memoria, self.estacao.localizacao)
-        #self.estacao.retornaDescEstacao()
+        if self.ConecAtiva == 'NAO':
+            print "Usuario %s nao possui coneccao ATIVA em nenhuma estacao" %(self.nome)
+        elif self.ConecAtiva == 'SIM':
+            print " Codigo: %f \n Descricao: %s \n Capacidade: %f \n Memoria: %f \n Local: %s" %(self.estacao.codigo_patrimonio,self.estacao.descricao,self.estacao.capacidade, self.estacao.memoria, self.estacao.localizacao)
 
-    def escolherImpressora(self, Impressora):
-        self.impressora = Impressora
+    def criarArquivo(self, nomeArq):
+        self.arquivo = Arquivo(nomeArq)   #verificar como fazer para cada vez que o mesmo usu?rio criar um arquivo o mesmo ser armazenado em uma lista
 
-    def retornaImpressora(self):
-        return self.impressora.descricao
-
-    def solicitarImpressao(self):
-        if self.ConecAtiva == 'SIM' and permImpressao == 'SIM':
-            pass
-        elif self.ConecAtiva == 'NAO':
-            print "Esse usuario nao pode imprimir pois não possui conexao ativa."
+    def solicitarImpressaoArq(self, Arquivo, Impressora):
+        if self.ConecAtiva == 'NAO':
+            print "Usuario %s nao possui coneccao ATIVA, portanto n?o pode imprimir" %(self.nome)
         elif self.permImpressao == 'NAO':
-            print "Esse usuario nao possui permissao para impressao."
+            print "Usuario %s nao tem permissao para imprimir arquivo" %(self.nome)
+        elif self.ConecAtiva == 'SIM' and self.CondicaoImprimir == 'SIM':
+            self.impressora = Impressora
+            print "O arquivo %s ser? impresso na impressora %s" %(self.arquivo.nomeArquivo, self.impressora.descricao)
+
+
+
 

@@ -30,7 +30,7 @@ class test(unittest.TestCase):
 ##        self.assertEqual(self.estacao.retornaPai(),"Micro")
 
     def setUp(self):
-        self.usu = Usuario("Fabiola",123)
+        self.usu = Usuario("Fabiola",123, 'NAO')
         self.est = Estacao(1,"Estacao 1",200,4,"macae")
         self.usu.usarEstacao(self.est)
 
@@ -45,6 +45,15 @@ class test(unittest.TestCase):
     def testaConeccaoAtiva(self):
         '''verifica se usuario ja possui coneccao ATIVA'''
         self.assertEqual(self.usu.ConecAtiva, "SIM", "Usuario nao possui coneccao ATIVA")
+
+    def podeImprimir(self):
+        '''Verifica se usuario pode imprimir'''
+        self.testaConeccaoAtiva()
+        self.assertEqual(self.usu.permImpressao, "SIM", "Usuario possui permissao de impressao")
+
+    def verificaUsuarioImpressora(self):
+        '''Verifica se usuario escolhe a impressora'''
+        self.assertTrue(self.usu.mostraImpressora())
 
 if __name__ == "__main__":
     unittest.main()
